@@ -1,0 +1,24 @@
+import React, { useState, useEffect } from "react";
+import Product from "./Product.jsx";
+import Filter from "./Filter.jsx";
+import Pages from "./Pages.jsx";
+export default function ProductList({products,sortVal,onSortChange,onSearch}) {
+  return (
+    <div className="flex flex-wrap gap-y-5 bg-white max-w-[70%] md:max-w-4xl gap-x-8 justify-center md:px-35 py-10 md:justify-between my-10">
+      <input type="text" placeholder="search" className="border p-2 w-[70%] rounded-full" onChange={onSearch}/>
+      <Filter sortVal={sortVal} onSortChange={onSortChange}/>
+      {products.map(function(item){
+                    return (
+                            <Product 
+                              image={item.image}
+                              title={item.title}
+                              description={item.description}
+                              price={item.price}
+                              sale={item.sale}
+                              saleprice={item.saleprice}
+                            />);
+      })}
+      <Pages />
+    </div>
+  );
+}
